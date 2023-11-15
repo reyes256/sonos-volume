@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form method="POST">
+      <h1 class="title">SONOS</h1>
+
+      <p>Current Volume: %<span id="currentVolume"><%= volume %></span></p>
+      <input
+        type="range"
+        id="volumeTrack"
+        value="<%= volume %>"
+        oninput="updateVolume()"
+      />
+    </form>
+
+    <script>
+      function updateVolume() {
+        const value = document.getElementById("volumeTrack").value;
+        document.getElementById("currentVolume").innerText = value;
+
+        console.log(value);
+
+        makeRequest(value);
+      }
+
+      function makeRequest(value) {
+        event.preventDefault();
+
+        fetch("http://localhost:3000/updateVolume", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            newVolume: value,
+          }),
+        });
+      }
+    </script>
+  </body>
+</html>
