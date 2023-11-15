@@ -1,20 +1,23 @@
 const express = require("express");
+const { DeviceDiscovery } = require("sonos");
+
+let volume = 35;
+DeviceDiscovery((device) => {
+  console.log("found device at " + device.host);
+
+  setInterval(() => {
+    device.setVolume(volume)
+  }, 10)
+});
 
 const app = express();
 const port = 3000;
-
-let volume = 35;
-function setVolume() {
-  console.log(volume);
-}
-
-setInterval(setVolume, 100);
 
 app.use(express.json());
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  res.render("index", { volume, name: "cullom" });
+  res.render("index", { volume });
 });
 
 app.post("/updateVolume", (req, res) => {
