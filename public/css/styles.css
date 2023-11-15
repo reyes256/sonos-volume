@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;1,100&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Barlow", sans-serif;
+  color: white;
+  cursor: default;
+}
+
+body {
+  background-color: #575351;
+  text-align: center;
+}
+
+.title {
+  font-size: 5.5rem;
+  font-weight: 700;
+  padding: 15px 0;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+#volumeTrack {
+  margin: 1rem;
+  width: 300px;
+}
